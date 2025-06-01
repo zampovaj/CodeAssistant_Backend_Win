@@ -19,7 +19,6 @@ namespace CodeAssistant.Infrastructure
         /// <returns>The updated service collection.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<AnalyzeCodeUseCase>();
             services.AddScoped<AnalyzeSolutionUseCase>();
             services.AddScoped<ISyntaxParser, SyntaxParser>();
             services.AddScoped<ICompilationBuilder, CompilationBuilder>();
@@ -29,7 +28,6 @@ namespace CodeAssistant.Infrastructure
             services.AddScoped<IZipHandler, ZipHandler>();
             services.AddScoped<IZipExtractor, ZipExtractor>();
             services.AddScoped<ISolutionFinder, SolutionFinder>();
-            services.AddScoped<ICodeCompilationBuilderService, CodeCompilationBuilderService>();
             services.AddScoped<ISolutionBuilderService, SolutionMSBuilderService>();
             services.AddScoped<IPathTrimmer, PathTrimmer>();
             return services;
