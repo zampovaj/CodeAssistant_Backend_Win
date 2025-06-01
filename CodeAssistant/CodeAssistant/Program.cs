@@ -2,7 +2,6 @@
 using CodeAssistant.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Text.Json.Serialization;
-using CodeAssistant.API.Formatters;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Build.Locator;
@@ -21,12 +20,6 @@ builder.Services.AddControllers()
         // Serialize enums as strings for readability and frontend compatibility
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
-
-// Add a custom input formatter to support plain text input (for raw code snippets)
-builder.Services.AddControllers(options =>
-{
-    options.InputFormatters.Insert(0, new PlainTextInputFormatter());
-});
 
 // Configure CORS to allow unrestricted access (for development or public API)
 builder.Services.AddCors(options =>
