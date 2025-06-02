@@ -2,9 +2,9 @@
 using CodeAssistant.API.Mappers;
 using CodeAssistant.Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
-using CodeAssistant.Application.Interfaces;
 using Microsoft.Build.Tasks;
 using System.Diagnostics;
+using Analyzer.Core.Application.Interfaces;
 
 namespace CodeAssistant.API.Controllers
 {
@@ -49,7 +49,14 @@ namespace CodeAssistant.API.Controllers
                 {
                     return BadRequest("No file uploaded.");
                 }
-                var solutionPath = await _zipHandler.GetPathAsync(zipFile);
+                byte[] fileBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    await zipFile.CopyToAsync(memoryStream);
+                    fileBytes = memoryStream.ToArray();
+                }
+
+                var solutionPath = await _zipHandler.GetPathAsync(fileBytes);
                 if (solutionPath == null)
                 {
                     return BadRequest("No solution found in zip.");

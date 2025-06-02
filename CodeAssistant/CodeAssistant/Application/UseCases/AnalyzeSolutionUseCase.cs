@@ -1,6 +1,5 @@
-﻿using CodeAssistant.Application.Interfaces;
-using CodeAssistant.Domain.Interfaces;
-using CodeAssistant.Domain.Models;
+﻿using Analyzer.Core.Application.Interfaces;
+using Analyzer.Core.Domain.Interfaces;
 using System;
 
 namespace CodeAssistant.Application.UseCases

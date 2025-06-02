@@ -1,9 +1,9 @@
-﻿using CodeAssistant.Application.Interfaces;
-using CodeAssistant.Application.UseCases;
-using CodeAssistant.Domain.Interfaces;
-using CodeAssistant.Infrastructure.ApplicationServices;
-using CodeAssistant.Infrastructure.Helpers;
-using CodeAssistant.Infrastructure.Services;
+﻿using CodeAssistant.Application.UseCases;
+using Analyzer.Core.Application.Interfaces;
+using Analyzer.Core.Infrastructure.ApplicationServices;
+using Analyzer.Core.Infrastructure.Services;
+using Analyzer.Core.Domain.Interfaces;
+using Analyzer.Core.Infrastructure.Helpers;
 
 namespace CodeAssistant.Infrastructure
 {
@@ -20,16 +20,10 @@ namespace CodeAssistant.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<AnalyzeSolutionUseCase>();
-            services.AddScoped<ISyntaxParser, SyntaxParser>();
-            services.AddScoped<ICompilationBuilder, CompilationBuilder>();
-            services.AddScoped<IDiagnosticsMapper, DiagnosticsMapper>();
-            services.AddScoped<ICodeAnalyzer, RoslynCodeAnalyzer>();
-            services.AddScoped<ISolutionAnalyzer, RoslynSolutionAnalyzer>();
             services.AddScoped<IZipHandler, ZipHandler>();
-            services.AddScoped<IZipExtractor, ZipExtractor>();
-            services.AddScoped<ISolutionFinder, SolutionFinder>();
             services.AddScoped<ISolutionBuilderService, SolutionMSBuilderService>();
-            services.AddScoped<IPathTrimmer, PathTrimmer>();
+            services.AddScoped<ISolutionAnalyzer, RoslynSolutionAnalyzer>();
+            services.AddScoped<ISolutionBuilderService, SolutionMSBuilderService>();
             return services;
         }
     }
