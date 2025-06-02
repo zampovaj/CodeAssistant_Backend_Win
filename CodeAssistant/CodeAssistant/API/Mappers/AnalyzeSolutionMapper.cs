@@ -1,5 +1,4 @@
 ﻿using CodeAssistant.API.DTOs;
-using CodeAssistant.Domain.Models;
 
 namespace CodeAssistant.API.Mappers
 {

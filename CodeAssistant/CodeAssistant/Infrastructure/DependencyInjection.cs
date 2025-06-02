@@ -20,10 +20,6 @@ namespace CodeAssistant.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<AnalyzeSolutionUseCase>();
-            services.AddScoped<IZipHandler, ZipHandler>();
-            services.AddScoped<ISolutionBuilderService, SolutionMSBuilderService>();
-            services.AddScoped<ISolutionAnalyzer, RoslynSolutionAnalyzer>();
-            services.AddScoped<ISolutionBuilderService, SolutionMSBuilderService>();
             return services;
         }
     }

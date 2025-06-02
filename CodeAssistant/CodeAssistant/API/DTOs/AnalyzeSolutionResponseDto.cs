@@ -1,4 +1,4 @@
-﻿using CodeAssistant.Domain.Models;
+﻿
 
 namespace CodeAssistant.API.DTOs
 {
