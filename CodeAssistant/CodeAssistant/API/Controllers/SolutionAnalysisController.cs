@@ -39,7 +39,7 @@ namespace CodeAssistant.API.Controllers
         /// </returns>
         /// <exception cref="Exception">If any exception ocurres, returns bad request containing the exception message</exception>
         [HttpPost("analyze")]
-        [Consumes("application/octet-stream")]
+        //[Consumes("application/octet-stream")]
         public async Task<ActionResult> AnalyzeSolutionAsync()
         {
             try
