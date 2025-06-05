@@ -52,11 +52,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 // api key
+app.UseMiddleware<ApiKeyMiddleware>();
 
 // Map HTTP routes to controllers
 app.MapControllers();
