@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Build.Locator;
+using CodeAssistant.API.Middleware;
 
 
 // Create a new web application builder
@@ -54,6 +55,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// api key
 
 // Map HTTP routes to controllers
 app.MapControllers();
