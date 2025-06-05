@@ -41,18 +41,17 @@ namespace CodeAssistant.API.Controllers
         /// <exception cref="Exception">If any exception ocurres, returns bad request containing the exception message</exception>
         [HttpPost("analyze")]
         [Consumes("multipart/form-data")]
-        public async Task<ActionResult> AnalyzeSolutionAsync([FromForm] IFormFile zipFile)
+        public async Task<ActionResult> AnalyzeSolutionAsync()
         {
             try
             {
-                if (zipFile == null || zipFile.Length == 0)
-                {
-                    return BadRequest("No file uploaded.");
-                }
                 byte[] fileBytes;
                 using (var memoryStream = new MemoryStream())
                 {
-                    await zipFile.CopyToAsync(memoryStream);
+                    await Request.Body.CopyToAsync(memoryStream);
+                    if (memoryStream.Length == 0)
+                        return BadRequest("Empty request body");
+
                     fileBytes = memoryStream.ToArray();
                 }
 
