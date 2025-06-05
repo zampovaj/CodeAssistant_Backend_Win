@@ -33,14 +33,13 @@ namespace CodeAssistant.API.Controllers
         /// Analyzes the provided C# solution for compilation errors and warnings.
         /// Accepts .zip file containing C# solution
         /// </summary>
-        /// <param name="zipFile">The <see cref="IFormFile" .zip file containing solution for analysis./></param>
         /// <returns>
         /// A <see cref="AnalyzeSolutionResponseDto"/> containing the list of detected errors and warnings.
         /// Returns 400 Bad Request if input is null or if 
         /// </returns>
         /// <exception cref="Exception">If any exception ocurres, returns bad request containing the exception message</exception>
         [HttpPost("analyze")]
-        [Consumes("multipart/form-data")]
+        [Consumes("application/octet-stream")]
         public async Task<ActionResult> AnalyzeSolutionAsync()
         {
             try
