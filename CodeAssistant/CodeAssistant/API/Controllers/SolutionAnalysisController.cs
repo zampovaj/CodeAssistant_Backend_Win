@@ -42,6 +42,7 @@ namespace CodeAssistant.API.Controllers
         //[Consumes("application/octet-stream")]
         public async Task<ActionResult> AnalyzeSolutionAsync()
         {
+            // need to commit somwhting for cicd :)
             try
             {
                 byte[] fileBytes;
