@@ -13,8 +13,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: List files at root
+        run: dir
+        shell: powershell
+
       - name: Setup .NET
-        uses: actions/setup-dotnet@4
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.410'
 
@@ -24,9 +28,16 @@ jobs:
       - name: Build
         run: dotnet build ./CodeAssistant/CodeAssistant.sln --configuration Release --no-restore
 
+      - name: Create Deploy folder
+        run: New-Item -Path C:\Deploy\WindowsBackend -ItemType Directory -Force
+        shell: powershell
+
       - name: Publish
         run: dotnet publish ./CodeAssistant/CodeAssistant/CodeAssistant.csproj --configuration Release --output C:\Deploy\WindowsBackend
 
       - name: Restart Windows Backend Service
-        run: Restart-Service CodeAssistant
+        run: |
+          Restart-Service CodeAssistant
+          Start-Sleep -Seconds 5
+          Get-Service CodeAssistant
         shell: powershell
