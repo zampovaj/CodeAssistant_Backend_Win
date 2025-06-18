@@ -32,23 +32,14 @@ jobs:
         run: New-Item -Path C:\Deploy\WindowsBackend -ItemType Directory -Force
         shell: powershell
 
-      - name: Kill existing .NET process (free the DLL)
-        run: |
-          Get-Process -Name "dotnet" -ErrorAction SilentlyContinue | ForEach-Object {
-          try {
-          $_.Kill()
-            } catch {
-              Write-Host "Couldn't kill process: $_"
-            }
-          }
+      - name: Stop the running CodeAsistant service
+        run: nssm stop CodeAssistant
         shell: powershell
 
       - name: Publish
         run: dotnet publish ./CodeAssistant/CodeAssistant/CodeAssistant.csproj --configuration Release --output C:\Deploy\WindowsBackend
 
       - name: Restart Windows Backend Service
-        run: |
-          Restart-Service CodeAssistant
-          Start-Sleep -Seconds 5
-          Get-Service CodeAssistant
+        run: 
+          nssm start CodeAssistant
         shell: powershell
