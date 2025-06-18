@@ -41,7 +41,7 @@ jobs:
               Write-Host "Couldn't kill process: $_"
             }
           }
-        shell: pwsh
+        shell: powershell
 
       - name: Publish
         run: dotnet publish ./CodeAssistant/CodeAssistant/CodeAssistant.csproj --configuration Release --output C:\Deploy\WindowsBackend
